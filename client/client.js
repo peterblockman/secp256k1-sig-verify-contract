@@ -19,12 +19,12 @@ async function main() {
     messageHash,
     keypair.privkey
   );
+
   console.log("SECP256K1_MESSAGE_HEX", toHex(messageHash));
   console.log(
     "SECP256K1_SIGNATURE_HEX",
     toHex(signature.toFixedLength().slice(0, 64))
   );
-
   console.log("SECP256K1_PUBLIC_KEY_HEX", toHex(pubKey));
 
   const ok = await Secp256k1.verifySignature(

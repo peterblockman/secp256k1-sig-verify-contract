@@ -1,1 +1,1 @@
-a simple CosmWasm contract to verify Secp256k1 signature
+a simple CosmWasm contract to verify Secp256k1 signatures

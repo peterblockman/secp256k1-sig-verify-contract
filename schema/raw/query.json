@@ -3,17 +3,55 @@
   "title": "QueryMsg",
   "oneOf": [
     {
+      "description": "Cosmos format (secp256k1 verification scheme).",
       "type": "object",
       "required": [
-        "value"
+        "verify_cosmos_signature"
       ],
       "properties": {
-        "value": {
+        "verify_cosmos_signature": {
           "type": "object",
+          "required": [
+            "message",
+            "public_key",
+            "signature"
+          ],
+          "properties": {
+            "message": {
+              "description": "Message to verify.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Binary"
+                }
+              ]
+            },
+            "public_key": {
+              "description": "Serialized compressed (33 bytes) or uncompressed (65 bytes) public key.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Binary"
+                }
+              ]
+            },
+            "signature": {
+              "description": "Serialized signature. Cosmos format (64 bytes).",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Binary"
+                }
+              ]
+            }
+          },
           "additionalProperties": false
         }
       },
       "additionalProperties": false
     }
-  ]
+  ],
+  "definitions": {
+    "Binary": {
+      "description": "Binary is a wrapper around Vec<u8> to add base64 de/serialization with serde. It also adds some helper methods to help encode inline.\n\nThis is only needed as serde-json-{core,wasm} has a horrible encoding for Vec<u8>. See also <https://github.com/CosmWasm/cosmwasm/blob/main/docs/MESSAGE_TYPES.md>.",
+      "type": "string"
+    }
+  }
 }

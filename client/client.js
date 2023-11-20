@@ -16,7 +16,7 @@ async function main() {
   const message = "Hello world!";
   const messageHash = new TextEncoder().encode(message);
   const signature = await Secp256k1.createSignature(
-    messageHash,
+    sha256(messageHash),
     keypair.privkey
   );
 
